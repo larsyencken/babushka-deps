@@ -13,3 +13,9 @@ dep 'synergy.managed' do
     provides []
 end
 
+dep 'vim.managed' do
+    installs {
+        via :apt, 'vim-nox'
+    }
+    provides []
+end
