@@ -17,7 +17,13 @@ dep 'vim.managed' do
     installs {
         via :apt, 'vim-nox'
     }
-    provides ['vim']
+    requires 'ctags.managed'
+end
+
+dep 'ctags.managed' do
+    installs {
+        via :apt, 'exuberant-ctags'
+    }
 end
 
 dep 'mercurial.managed' do
