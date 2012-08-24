@@ -19,3 +19,9 @@ dep 'vim.managed' do
     }
     provides []
 end
+
+dep 'mercurial.managed' do
+    installs {
+        via :apt, 'mercurial'
+    }
+end
