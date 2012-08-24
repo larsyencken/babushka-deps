@@ -17,11 +17,12 @@ dep 'vim.managed' do
     installs {
         via :apt, 'vim-nox'
     }
-    provides []
+    provides ['vim']
 end
 
 dep 'mercurial.managed' do
     installs {
         via :apt, 'mercurial'
     }
+    provides ['hg']
 end
