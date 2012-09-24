@@ -32,3 +32,11 @@ dep 'mercurial.managed' do
     }
     provides ['hg']
 end
+
+dep 'mercurial.pip' do
+    provides ['hg']
+end
+
+dep 'anytop.pip' do
+    provides ['anytop']
+end
