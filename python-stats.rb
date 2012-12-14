@@ -1,26 +1,94 @@
 dep 'python for statistics' do
-    requires \
-        'python',
-        'numpy.pip',
-        'scipy.pip',
-        'ipython.pip',
-        'matplotlib.pip',
-        'pandas.pip'
+    requires {
+        on :osx, [
+            'python',
+            'numpy',
+            'scipy',
+            'ipython',
+            'matplotlib',
+            'pandas'
+        ]
+        on :ubuntu, [
+            'python',
+            'python-dev.managed',
+            'numpy',
+            'scipy',
+            'ipython',
+            'matplotlib',
+            'pandas'
+        ]
+    }
 end
 
-dep 'python', :template => :managed do
+dep 'python', :template => 'managed' do
     installs {
         via :apt, 'python'
-        via :macports, 'python27'
         via :brew, 'python'
     }
     provides ['python']
 end
 
+dep 'python-dev.managed' do
+    provides []
+end
+
+dep 'numpy.pip' do
+    provides []
+end
+
+dep 'scipy' do
+    requires {
+        on :osx, 'python', 'scipy.pip'
+        on :ubuntu, 'python', 'scipy.managed'
+    }
+end
+
+dep 'scipy.managed' do
+    installs {
+        on :ubuntu, 'python-scipy'
+    }
+    provides []
+end
+
+dep 'scipy.pip' do
+    provides []
+end
+
+dep 'ipython', :template => 'pip' do
+end
+
+dep 'matplotlib' do
+    requires {
+        on :osx, 'python', 'matplotlib.pip'
+        on :ubuntu, 'python', 'matplotlib.managed'
+    }
+end
+
+dep 'matplotlib.managed' do
+    installs {
+        on :ubuntu, 'python-matplotlib'
+    }
+    provides []
+end
+
+dep 'matplotlib.pip' do
+    provides []
+end
+
+dep 'pandas', :template => 'pip' do
+    provides []
+end
+
+dep 'numpy' do
+    requires {
+        on :osx, 'numpy.pip'
+        on :ubuntu, 'numpy.managed'
+    }
+end
+
 dep 'numpy.managed' do
     installs {
         via :apt, 'python-numpy'
-        via :macports, 'py27-numpy'
     }
     provides []
 end
@@ -28,7 +96,6 @@ end
 dep 'scipy.managed' do
     installs {
         via :apt, 'python-scipy'
-        via :macports, 'py27-scipy'
     }
     provides []
 end
@@ -36,7 +103,6 @@ end
 dep 'ipython.managed' do
     installs {
         via :apt, 'ipython'
-        via :macports, 'py27-ipython'
     }
     provides ['ipython']
 end
@@ -44,16 +110,12 @@ end
 dep 'matplotlib.managed' do
     installs {
         via :apt, 'python-matplotlib'
-        via :macports, 'py27-matplotlib'
     }
-    provides []
 end
 
 dep 'pandas.managed' do
     installs {
         via :apt, 'python-pandas'
-        via :macports, 'py27-pandas'
     }
-    provides []
 end
 
