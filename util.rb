@@ -13,19 +13,6 @@ dep 'synergy.managed' do
     provides []
 end
 
-dep 'vim.managed' do
-    installs {
-        via :apt, 'vim-nox'
-    }
-    requires 'ctags.managed'
-end
-
-dep 'ctags.managed' do
-    installs {
-        via :apt, 'exuberant-ctags'
-    }
-end
-
 dep 'mercurial.managed' do
     installs {
         via :apt, 'mercurial'
