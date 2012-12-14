@@ -1,17 +1,18 @@
-dep 'python-stats' do
+dep 'python for statistics' do
     requires \
-        'python.managed',
-        'numpy.managed',
-        'scipy.managed',
-        'ipython.managed',
-        'matplotlib.managed',
-        'pandas.managed'
+        'python',
+        'numpy.pip',
+        'scipy.pip',
+        'ipython.pip',
+        'matplotlib.pip',
+        'pandas.pip'
 end
 
-dep 'python.managed' do
+dep 'python', :template => :managed do
     installs {
         via :apt, 'python'
         via :macports, 'python27'
+        via :brew, 'python'
     }
     provides ['python']
 end
