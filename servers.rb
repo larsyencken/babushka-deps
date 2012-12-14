@@ -1,7 +1,3 @@
-dep 'varnish' do
-    requires 'varnish.managed'
-end
-
 meta :custom_apt_source, :for => :ubuntu do
     accepts_value_for :key_cmd
     accepts_value_for :source_line
@@ -19,12 +15,11 @@ meta :custom_apt_source, :for => :ubuntu do
     }
 end
 
-dep 'varnish.managed' do
+dep 'varnish', :template => 'managed' do
     requires 'varnish.custom_apt_source'
     installs {
         via :apt, 'varnish'
     }
-    provides []
 end
 
 dep 'varnish.custom_apt_source' do
@@ -32,16 +27,11 @@ dep 'varnish.custom_apt_source' do
     source_line "deb http://repo.varnish-cache.org/ubuntu/ #{shell 'lsb_release -cs'} varnish-3.0"
 end
 
-dep 'mongodb' do
-    requires 'mongodb.managed'
-end
-
-dep 'mongodb.managed' do
+dep 'mongodb', :template => 'managed' do
     requires 'mongodb.custom_apt_source'
     installs {
         via :apt, 'mongodb-10gen'
     }
-    provides []
 end
 
 dep 'mongodb.custom_apt_source' do
@@ -51,10 +41,9 @@ end
 
 dep 'sysadmin base' do
     requires ['vim', 'screen', 'htop']
-    provides []
 end
 
-dep 'vim', :template => :managed do
+dep 'vim', :template => 'managed' do
     installs {
         via :apt, 'vim-nox'
         via :brew, 'vim'
@@ -62,8 +51,8 @@ dep 'vim', :template => :managed do
     provides ['vim']
 end
 
-dep 'screen', :template => :managed do
+dep 'screen', :template => 'managed' do
 end
 
-dep 'htop', :template => :managed do
+dep 'htop', :template => 'managed' do
 end
