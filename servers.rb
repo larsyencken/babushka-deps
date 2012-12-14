@@ -36,7 +36,6 @@ dep 'mongodb' do
     requires 'mongodb.managed'
 end
 
-
 dep 'mongodb.managed' do
     requires 'mongodb.custom_apt_source'
     installs {
@@ -50,3 +49,21 @@ dep 'mongodb.custom_apt_source' do
     source_line 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen'
 end
 
+dep 'sysadmin base' do
+    requires ['vim', 'screen', 'htop']
+    provides []
+end
+
+dep 'vim', :template => :managed do
+    installs {
+        via :apt, 'vim-nox'
+        via :brew, 'vim'
+    }
+    provides ['vim']
+end
+
+dep 'screen', :template => :managed do
+end
+
+dep 'htop', :template => :managed do
+end
