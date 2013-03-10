@@ -13,7 +13,9 @@ end
 
 dep 'julia built' do
   requires 'julia source checked out', \
-      'gfortran' \
+      'gfortran', \
+      'm4', \
+      'ncurses'
 
   setup {
     @bin = '~/.local/julia/julia'
@@ -38,3 +40,19 @@ end
 dep 'gfortran', :template => 'managed' do
 end
 
+dep 'm4', :template => 'managed' do
+end
+
+dep 'ncurses', :template => 'managed' do
+  installs 'libncurses5', 'libncurses5-dev'
+  provides []
+end
+
+dep 'local binaries in path' do
+  met? {
+    shell "fgrep 'export PATH=${HOME}/.local/bin:${PATH}' ~/.bashrc"
+  }
+  meet {
+    shell "echo 'export PATH=${HOME}/.local/bin:${PATH}' >>~/.bashrc"
+  }
+end
