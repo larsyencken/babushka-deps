@@ -27,7 +27,7 @@ dep 'julia built' do
   }
 end
 
-dep 'julia source checked out' do 
+dep 'julia source checked out' do
   setup {
     @repo = Babushka::GitRepo.new('~/.local/julia')
   }
@@ -43,7 +43,13 @@ end
 dep 'm4', :template => 'managed' do
 end
 
-dep 'ncurses', :template => 'managed' do
+dep 'ncurses' do
+  requires {
+    on :ubuntu, ['ncurses.ubuntu']
+  }
+end
+
+dep 'ncurses.ubuntu', :template => 'managed' do
   installs 'libncurses5', 'libncurses5-dev'
   provides []
 end
