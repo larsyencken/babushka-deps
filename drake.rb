@@ -26,7 +26,11 @@ dep 'drake built' do
 end
 
 dep 'drake master checked out' do
-  requires 'drake checked out'
+  requires 'drake checked out', \
+    'drake updated to master'
+end
+
+dep 'drake updated to master' do
   setup {
     @repo = Babushka::GitRepo.new("~/.local/drake")
     @repo.repo_shell "git fetch"
