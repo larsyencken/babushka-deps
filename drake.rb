@@ -1,5 +1,12 @@
 dep 'drake' do
-  requires 'drake built'
+  requires 'drake checked out', \
+    'drake updated to master', \
+    'leiningen', \
+    'drake built', \
+    'drake executables set up'
+end
+
+dep 'drake executables set up' do
   setup {
     @bin = "~/.local/bin/drake"
     @jar = "~/.local/drake/target/drake.jar"
@@ -8,14 +15,12 @@ dep 'drake' do
   meet {
     shell "mkdir -p $(dirname #{@bin})"
     shell "echo '#!/bin/bash' >#{@bin}"
-    shell "echo 'exec java -jar #{@jar} \"%@\"' >>#{@bin}"
+    shell "echo 'exec java -jar #{@jar} \"\$@\"' >>#{@bin}"
     shell "chmod a+x #{@bin}"
   }
 end
 
 dep 'drake built' do
-  requires 'drake master checked out', \
-    'leiningen'
   setup {
     @jar = "~/.local/drake/target/drake.jar"
   }
@@ -23,11 +28,6 @@ dep 'drake built' do
   meet {
     shell "cd ~/.local/drake; lein uberjar"
   }
-end
-
-dep 'drake master checked out' do
-  requires 'drake checked out', \
-    'drake updated to master'
 end
 
 dep 'drake updated to master' do
