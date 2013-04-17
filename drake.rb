@@ -26,7 +26,7 @@ dep 'drake built' do
   }
   met? { @jar.p.exists? }
   meet {
-    shell "cd ~/.local/drake; lein uberjar"
+    shell "cd ~/.local/drake; ~/.local/bin/lein uberjar"
   }
 end
 
