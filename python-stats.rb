@@ -96,3 +96,26 @@ end
 dep 'scipy.pip' do
   provides []
 end
+
+dep 'gfortran', :template => 'managed'
+
+dep 'openmdao' do
+  requires 'numpy',
+    'scipy',
+    'matplotlib',
+    'gfortran'
+
+  setup {
+    @bin = '~/.local/openmdao/bin/openmdao'
+  }
+
+  met? {
+    @bin.p.exists?
+  }
+
+  meet {
+    shell 'mkdir -p ~/.local'
+    shell 'curl -o /tmp/go-openmdao.py http://openmdao.org/releases/0.5.5/go-openmdao.py'
+    shell "python /tmp/go-openmdao.py ~/.local/openmdao"
+  }
+end
