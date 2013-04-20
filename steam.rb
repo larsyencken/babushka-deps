@@ -6,6 +6,5 @@ dep 'playonlinux.managed' do
 end
 
 dep 'steam' do
-    requires \
-        'playonlinux.managed'
+    requires 'playonlinux.managed'
 end

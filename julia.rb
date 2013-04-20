@@ -12,9 +12,9 @@ dep 'julia' do
 end
 
 dep 'julia built' do
-  requires 'julia source checked out', \
-      'gfortran', \
-      'm4', \
+  requires 'julia source checked out',
+      'gfortran',
+      'm4',
       'ncurses'
 
   setup {
@@ -37,19 +37,13 @@ dep 'julia source checked out' do
   }
 end
 
-dep 'gfortran', :template => 'managed' do
-end
-
-dep 'm4', :template => 'managed' do
-end
-
 dep 'ncurses' do
   requires {
-    on :ubuntu, ['ncurses.ubuntu']
+    on :ubuntu, ['ncurses.managed']
   }
 end
 
-dep 'ncurses.ubuntu', :template => 'managed' do
+dep 'ncurses.managed' do
   installs 'libncurses5', 'libncurses5-dev'
   provides []
 end

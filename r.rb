@@ -8,7 +8,7 @@ R_CRAN_MIRROR="http://cran.ms.unimelb.edu.au/"
 
 dep 'R', :template => 'managed' do
   requires {
-    on :ubuntu, 'marutter rdev ppa in sources' 
+    on :ubuntu, 'marutter rdev ppa in sources'
   }
   installs {
     via :apt, 'r-base'
