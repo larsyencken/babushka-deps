@@ -300,3 +300,12 @@ end
 dep 'nose.pip' do
   provides ['nosetests']
 end
+
+dep 'zbar.managed' do
+  provides []
+end
+
+dep 'zbar', :template => 'pip' do
+  requires 'zbar.managed'
+  provides []
+end
