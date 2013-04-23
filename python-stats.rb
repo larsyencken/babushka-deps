@@ -158,13 +158,14 @@ dep '__simplecv source at master' do
 end
 
 dep '__simplecv installed' do
-  requires 'pygame'
+  requires 'pygame',
+    'pip'
   met? {
     shell "pip freeze | fgrep -q 'egg=SimpleCV-dev'"
   }
 
   meet {
-    shell "cd ~/.local/simplecv && python setup.py develop"
+    shell "python setup.py develop", :sudo => (! File.writable? "/usr/local/lib"), :cd => '~/.local/simplecv'
   }
 end
 
@@ -176,8 +177,9 @@ dep 'opencv', :template => 'managed' do
   provides []
 end
 
-dep '__pygame on ubuntu', :templates => 'managed' do
+dep '__pygame on ubuntu', :template => 'managed' do
   installs 'python-pygame'
+  provides []
 end
 
 dep '__pygame on osx', :template => 'managed' do
