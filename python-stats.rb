@@ -169,6 +169,10 @@ dep '__simplecv installed' do
 end
 
 dep 'opencv', :template => 'managed' do
+  installs {
+    on :osx, 'opencv'
+    on :ubuntu, 'python-opencv'
+  }
   provides []
 end
 
