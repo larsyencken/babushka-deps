@@ -221,3 +221,5 @@ dep 'zbar', :template => 'pip' do
   requires 'zbar.managed'
   provides []
 end
+
+dep 'ffmpeg', :template => 'managed'
