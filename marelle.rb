@@ -52,6 +52,8 @@ dep '__marelle executable set up' do
   }
   met? { @bin.p.exists? }
   meet {
-    shell "ln -s ~/.local/marelle/marelle #{@bin}"
+    shell "echo '#!/bin/bash' >#{@bin}"
+    shell "echo 'exec swipl -q -t main -s ~/.local/marelle/marelle.pl \"\$@\"' >>#{@bin}"
+    shell "chmod a+x #{@bin}"
   }
 end
